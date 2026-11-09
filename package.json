@@ -1,0 +1,61 @@
+{
+  "name": "@captiveorigins/payload-plugin-maintenance",
+  "version": "0.1.0",
+  "description": "Maintenance mode for Payload: close a site with a back-soon page and HTTP 503 from an admin switch, while the admin, API and signed-in staff keep working.",
+  "homepage": "https://github.com/CaptiveOrigins/payload-plugin-maintenance#readme",
+  "bugs": {
+    "url": "https://github.com/CaptiveOrigins/payload-plugin-maintenance/issues"
+  },
+  "keywords": [
+    "payload",
+    "payload-plugin",
+    "payloadcms",
+    "maintenance",
+    "maintenance-mode",
+    "coming-soon",
+    "nextjs",
+    "503"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CaptiveOrigins/payload-plugin-maintenance.git"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./gate": {
+      "types": "./dist/gate.d.ts",
+      "import": "./dist/gate.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "prepack": "npm run build",
+    "prepublishOnly": "npm run typecheck && npm test"
+  },
+  "peerDependencies": {
+    "payload": "^3.80.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "payload": "3.92.1",
+    "typescript": "^5.9.0",
+    "vitest": "^5.1.0"
+  }
+}
