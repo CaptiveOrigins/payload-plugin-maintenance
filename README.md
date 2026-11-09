@@ -2,7 +2,7 @@
 
 Maintenance mode for Payload: close a site with a back-soon page and HTTP 503 from an admin switch, while the admin, API and signed-in staff keep working.
 
-**Status:** early (0.1.0, not on npm yet). Unit tests cover the page, the global's access and the gate (switch, environment override, sign-in bypass, cache, failed reads, the Vercel protection header). The same approach runs on captiveorigins.com as a hand-written switch; this package hasn't been installed in a real site yet.
+**Status:** early (0.1.0 on npm). Unit tests cover the page, the global's access and the gate (switch, environment override, sign-in bypass, cache, failed reads, the Vercel protection header). The same approach runs on captiveorigins.com as a hand-written switch; this package hasn't been installed in a real site yet.
 
 ## What it does
 
