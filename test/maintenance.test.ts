@@ -42,9 +42,27 @@ describe('the global', () => {
     const update = g.access!.update as (a: { req: { user: unknown } }) => boolean
     expect(update({ req: { user: { admin: false } } })).toBe(false)
     expect(update({ req: { user: { admin: true } } })).toBe(true)
-    // Default: signed in.
-    const d = maintenanceGlobal().access!.update as (a: { req: { user: unknown } }) => boolean
-    expect([d({ req: { user: null } }), d({ req: { user: {} } })]).toEqual([false, true])
+  })
+
+  it('lets only users of the admin collection close the site by default; members and unclear configs are refused (2026-11-11)', async () => {
+    const d = maintenanceGlobal().access!.update as (a: { req: unknown }) => unknown
+    const as = (user: unknown, adminUser: unknown = 'users') => ({ req: { user, payload: { config: { admin: { user: adminUser } } } } })
+    // A member signed in through a second auth collection: no.
+    expect(await d(as({ id: 'm1', collection: 'members' }))).toBe(false)
+    // An admin-collection user: yes, and exactly true.
+    expect(await d(as({ id: 'a1', collection: 'users' }))).toBe(true)
+    // A site whose admin collection is named otherwise: its users pass, `users` doesn't.
+    expect(await d(as({ id: 'a2', collection: 'staff' }, 'staff'))).toBe(true)
+    expect(await d(as({ id: 'a3', collection: 'users' }, 'staff'))).toBe(false)
+    // Not signed in, a user with no collection, or no admin collection to compare with: no.
+    expect(await d(as(null))).toBe(false)
+    expect(await d(as({ id: 'x' }))).toBe(false)
+    expect(await d(as({ id: 'a1', collection: 'users' }, null))).toBe(false)
+    expect(await d({ req: { user: { id: 'a1', collection: 'users' } } })).toBe(false)
+    // The plugin's own global uses the same default.
+    const plugged = maintenance()({ globals: [] } as never).globals![0]!.access!.update as (a: { req: unknown }) => unknown
+    expect(await plugged(as({ id: 'm1', collection: 'members' }))).toBe(false)
+    expect(await plugged(as({ id: 'a1', collection: 'users' }))).toBe(true)
   })
 
   it('adds itself once, and refuses a slug that is already taken', () => {

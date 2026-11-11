@@ -59,7 +59,13 @@ export async function proxy(request: NextRequest) {
 export const config = { matcher: ['/((?!admin|api|_next|favicon.ico).*)'] }
 ```
 
-`access` decides who can close and reopen the site. The default is anyone signed in to the admin, which suits most single-team sites; pass your own otherwise.
+## Access
+
+`access` decides who can close and reopen the site and edit the page. It's a Payload `Access` function and goes to Payload as the global's `update` access as it is.
+
+With no `access`, only users of your admin collection (`admin.user` in your Payload config, usually `users`) can change it. Anyone signed in through another auth collection, such as site members, is refused, and so is everyone if the config names no admin collection. Reading the global stays open to anyone: it holds nothing private.
+
+**Changed 2026-11-11 (unreleased):** the default used to let any signed-in account change the switch, members of other auth collections included. Sites relying on the old default must pass the option, for example `access: ({ req }) => Boolean(req.user)`.
 
 Gate options: `slug`, `apiRoute`, `adminRoute`, `openPaths`, `envVar`, `bypassCookie`, `cacheSeconds`, `retryAfterSeconds`, `brand`, `lang`, `theme` (light and dark colours), and `read` to supply your own reader.
 
