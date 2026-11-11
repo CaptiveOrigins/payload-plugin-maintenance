@@ -1,6 +1,6 @@
 {
   "name": "@captiveorigins/payload-plugin-maintenance",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Maintenance mode for Payload: close a site with a back-soon page and HTTP 503 from an admin switch, while the admin, API and signed-in staff keep working.",
   "homepage": "https://github.com/CaptiveOrigins/payload-plugin-maintenance#readme",
   "bugs": {
