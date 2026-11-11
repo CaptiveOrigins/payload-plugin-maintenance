@@ -20,6 +20,14 @@ Limits:
 - One switch per deployment. A multi-tenant site closes every tenant together.
 - On Vercel with Deployment Protection, the gate's request to its own API is refused unless "Protection Bypass for Automation" is on; the gate sends `VERCEL_AUTOMATION_BYPASS_SECRET` when it exists.
 
+## On its own, and with others
+
+**On its own:** Maintenance needs only Payload and a Next.js proxy. It adds one global and a gate, and reads the switch over your site's own API.
+
+**Works with:** any plugin, since it doesn't touch their collections or routes. The admin and API stay open while the site is closed, so other plugins' webhooks and scheduled jobs keep running. Nothing in it is built for one plugin in particular.
+
+**Family:** Maintenance has no family on purpose: it sits beside every plugin. The families are a working draft, and Fulfillment is due to be split.
+
 ## Install
 
 ```bash
