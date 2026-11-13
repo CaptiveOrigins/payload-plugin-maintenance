@@ -1,10 +1,10 @@
 {
-  "name": "@captiveorigins/payload-plugin-maintenance",
+  "name": "@extantape/payload-plugin-maintenance",
   "version": "0.2.0",
   "description": "Maintenance mode for Payload: close a site with a back-soon page and HTTP 503 from an admin switch, while the admin, API and signed-in staff keep working.",
-  "homepage": "https://github.com/CaptiveOrigins/payload-plugin-maintenance#readme",
+  "homepage": "https://github.com/ExtantApe/payload-plugin-maintenance#readme",
   "bugs": {
-    "url": "https://github.com/CaptiveOrigins/payload-plugin-maintenance/issues"
+    "url": "https://github.com/ExtantApe/payload-plugin-maintenance/issues"
   },
   "keywords": [
     "payload",
@@ -19,7 +19,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CaptiveOrigins/payload-plugin-maintenance.git"
+    "url": "git+https://github.com/ExtantApe/payload-plugin-maintenance.git"
   },
   "type": "module",
   "exports": {

@@ -2,7 +2,7 @@
 
 Maintenance mode for Payload: close a site with a back-soon page and HTTP 503 from an admin switch, while the admin, API and signed-in staff keep working.
 
-**Status:** early (0.1.0 on npm). Unit tests cover the page, the global's access and the gate (switch, environment override, sign-in bypass, cache, failed reads, the Vercel protection header). The same approach runs on captiveorigins.com as a hand-written switch; this package hasn't been installed in a real site yet.
+**Status:** early (0.2.0). From 0.2.0 it is published as `@extantape/payload-plugin-maintenance`; the earlier package name is deprecated in its favor. Unit tests cover the page, the global's access and the gate (switch, environment override, sign-in bypass, cache, failed reads, the Vercel protection header). The same approach already runs on a live site as a hand-written switch; this package hasn't been installed in a real site yet.
 
 ## What it does
 
@@ -31,12 +31,12 @@ Limits:
 ## Install
 
 ```bash
-npm install @captiveorigins/payload-plugin-maintenance
+npm install @extantape/payload-plugin-maintenance
 ```
 
 ```ts
 // payload.config.ts
-import { maintenance } from '@captiveorigins/payload-plugin-maintenance'
+import { maintenance } from '@extantape/payload-plugin-maintenance'
 
 export default buildConfig({
   // ...
@@ -46,7 +46,7 @@ export default buildConfig({
 
 ```ts
 // src/proxy.ts (Next.js 16; middleware.ts on older versions)
-import { maintenanceGate } from '@captiveorigins/payload-plugin-maintenance/gate'
+import { maintenanceGate } from '@extantape/payload-plugin-maintenance/gate'
 
 const gate = maintenanceGate({ brand: 'My Site' })
 

@@ -67,7 +67,7 @@ export function maintenanceGlobal(options: MaintenancePluginOptions = {}): Globa
   }
 }
 
-/** Adds the Maintenance global. Pair it with `maintenanceGate` from `@captiveorigins/payload-plugin-maintenance/gate` in your Next.js proxy (middleware). */
+/** Adds the Maintenance global. Pair it with `maintenanceGate` from `@extantape/payload-plugin-maintenance/gate` in your Next.js proxy (middleware). */
 export const maintenance =
   (options: MaintenancePluginOptions = {}) =>
   (config: Config): Config => {
